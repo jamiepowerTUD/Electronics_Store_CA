@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_backround"
+    >
+
+    <EditText
+        android:id="@+id/shipping_field"
+        android:layout_width="250dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/round_text"
+        android:ems="10"
+        android:hint="   Shipping Address"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password_field" />
+
+    <EditText
+        android:id="@+id/Expiry_field"
+        android:layout_width="110dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/round_text"
+        android:ems="10"
+        android:hint="  Expiry"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shipping_field" />
+
+    <EditText
+        android:id="@+id/name_field"
+        android:layout_width="250dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="88dp"
+        android:background="@drawable/round_text"
+        android:ems="10"
+        android:hint="   Name"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/card_field"
+        android:layout_width="250dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/round_text"
+        android:ems="10"
+        android:hint="    Card Number"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Expiry_field" />
+
+    <EditText
+        android:id="@+id/password_field"
+        android:layout_width="250dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/round_text"
+        android:ems="10"
+        android:hint="   Password"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email_field" />
+
+    <EditText
+        android:id="@+id/cvv_field"
+        android:layout_width="97dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/round_text"
+        android:ems="10"
+        android:hint="  CVV"
+        android:inputType="number"
+        app:layout_constraintStart_toEndOf="@+id/Expiry_field"
+        app:layout_constraintTop_toBottomOf="@+id/shipping_field" />
+
+    <EditText
+        android:id="@+id/email_field"
+        android:layout_width="250dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/round_text"
+        android:ems="10"
+        android:hint="   Email"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name_field" />
+
+    <Button
+        android:id="@+id/register_button"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="130dp"
+        android:layout_marginBottom="98dp"
+        android:background="@drawable/round_button"
+        android:fontFamily="sans-serif-medium"
+        android:text="Register"
+        android:onClick="register"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

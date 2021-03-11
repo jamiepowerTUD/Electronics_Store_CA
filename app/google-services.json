@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "647835944434",
+    "project_id": "electronics-store-ca",
+    "storage_bucket": "electronics-store-ca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:647835944434:android:3a8b22931100827c54d76b",
+        "android_client_info": {
+          "package_name": "com.patterns.electronics"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "647835944434-i3free5n8uu4lsoo835s1qt1lot2ljqv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASIykNu2n0qkOLuMhPdHHsj7efOkmE3t8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "647835944434-i3free5n8uu4lsoo835s1qt1lot2ljqv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
