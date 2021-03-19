@@ -28,6 +28,7 @@
         android:fontFamily="sans-serif-condensed"
         android:lineSpacingExtra="8sp"
         android:text="Login"
+        android:onClick="gotoLogin"
         android:textSize="20sp"
         android:textStyle="bold"
         android:typeface="normal"

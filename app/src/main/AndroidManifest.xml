@@ -23,6 +23,24 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".Login">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".AdminConsole">
+        <intent-filter>
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+     </activity>
+
+        <activity android:name=".AddItem">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
 
     </application>
 

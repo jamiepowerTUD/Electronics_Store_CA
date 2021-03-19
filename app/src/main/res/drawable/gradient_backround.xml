@@ -9,7 +9,7 @@
         android:endColor="@color/light_blue"
         android:startColor="@color/light_blue"
         android:centerColor="@color/white"
-        android:type="radial"
+
         android:useLevel="false"
         android:gradientRadius="5"
         />

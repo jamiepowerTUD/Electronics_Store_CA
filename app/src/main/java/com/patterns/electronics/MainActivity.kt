@@ -20,6 +20,14 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    fun gotoLogin(v : View)
+    {
+        val i = Intent(this , Login::class.java)
+        startActivity(i)
+
+    }
+
+
 
     fun gotoRegister(v : View)
     {

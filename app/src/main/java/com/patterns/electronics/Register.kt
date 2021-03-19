@@ -124,8 +124,18 @@ class Register : AppCompatActivity()
                         val user = FirebaseAuth.getInstance().currentUser
                         if (user != null) {
 
-                            val card = "${numberField.text}-${dateField.text}-$cvvField"
+                            val card = "${numberField.text}-${dateField.text}-${cvvField.text}"
                             users.push().setValue(User(user.uid,nameField.text.toString(),emailField.text.toString(),addressField.text.toString(),card,false,false))
+
+                            nameField.setText("")
+                            emailField.setText("")
+                            passwordField.setText("")
+                            numberField.setText("")
+                            cvvField.setText("")
+                            dateField.setText("")
+                            addressField.setText("")
+
+
 
                         }
 

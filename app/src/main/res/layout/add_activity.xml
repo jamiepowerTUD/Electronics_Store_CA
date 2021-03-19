@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_blue"
+    >
+
+    <EditText
+        android:id="@+id/item_colour_field"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/round_text"
+        android:ems="10"
+        android:hint="  Colour"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/category_spinner" />
+
+    <Spinner
+        android:id="@+id/category_spinner"
+        android:layout_width="245dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="48dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/price_field" />
+
+    <EditText
+        android:id="@+id/price_field"
+        android:layout_width="112dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/round_text"
+        android:ems="10"
+        android:hint="  0.0"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_manufacture_field" />
+
+    <EditText
+        android:id="@+id/item_manufacture_field"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/round_text"
+        android:ems="10"
+        android:hint="  Manufacturer"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_title_field" />
+
+    <EditText
+        android:id="@+id/item_title_field"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="196dp"
+        android:background="@drawable/round_text"
+        android:ems="10"
+        android:hint="  Title"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/item_quantity"
+        android:layout_width="112dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/round_text"
+        android:ems="10"
+        android:hint="  0"
+        android:inputType="number"
+        app:layout_constraintStart_toEndOf="@+id/price_field"
+        app:layout_constraintTop_toBottomOf="@+id/item_manufacture_field" />
+
+    <Button
+        android:id="@+id/create_item"
+        android:layout_width="163dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/round_button"
+        android:text="Add"
+        android:onClick="addItem"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_colour_field" />
+
+    <ImageView
+        android:id="@+id/item_image"
+        android:layout_width="136dp"
+        android:layout_height="125dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="38dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/upload_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="85dp"
+        android:layout_marginEnd="85dp"
+        android:background="@drawable/round_button"
+        android:onClick="uploadImage"
+        android:text="Upload"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
