@@ -1,6 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
+    android:background="@color/light_blue">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/item_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="550dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <EditText
+        android:id="@+id/search_box"
+        android:layout_width="255dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/round_text"
+        android:ems="10"
+        android:hint="Search"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/item_search_button"
+        android:layout_width="67dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/round_button"
+        android:backgroundTint="@color/blue"
+        android:src="@drawable/ic_magnifying_glass"
+        android:onClick="filter"
+        android:paddingRight="15dp"
+        app:layout_constraintStart_toEndOf="@+id/search_box"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/round_button"
+        tools:srcCompat="@drawable/ic_magnifying_glass" />
+
+    <RadioGroup
+        android:layout_width="370dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_search_button">
+
+        <RadioButton
+            android:id="@+id/name_radio"
+            android:layout_width="90dp"
+            android:layout_height="35dp"
+            android:text="Name"
+            android:textColor="@color/blue"
+            android:textColorHighlight="@color/off_white"
+            android:textStyle="bold"
+            app:useMaterialThemeColors="false" />
+
+        <RadioButton
+            android:id="@+id/cat_radio"
+            android:layout_width="110dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="25dp"
+            android:text="Category"
+            android:textColor="@color/blue"
+            android:textStyle="bold"
+            app:useMaterialThemeColors="false" />
+
+        <RadioButton
+            android:id="@+id/man_radio"
+            android:layout_width="130dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="20dp"
+            android:text="Manufacturer"
+            android:textColor="@color/blue"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:useMaterialThemeColors="false" />
+    </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

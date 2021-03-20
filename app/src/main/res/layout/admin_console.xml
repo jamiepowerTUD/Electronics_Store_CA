@@ -38,7 +38,7 @@
         android:layout_marginTop="50dp"
         android:background="@drawable/round_button"
         android:fontFamily="sans-serif-condensed-medium"
-        android:onClick="gotoAddItem"
+        android:onClick="gotoCatalogue"
         android:text="Catalogue"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"

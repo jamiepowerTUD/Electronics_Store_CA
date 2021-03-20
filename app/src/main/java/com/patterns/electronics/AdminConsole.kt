@@ -25,4 +25,12 @@ class AdminConsole : AppCompatActivity() {
         startActivity(i)
     }
 
+    fun gotoCatalogue(v : View)
+    {
+        val i = Intent(this , Catalogue::class.java)
+        startActivity(i)
+    }
+
+
+
 }

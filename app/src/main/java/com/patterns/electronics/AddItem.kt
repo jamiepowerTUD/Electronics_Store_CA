@@ -83,9 +83,6 @@ class AddItem : AppCompatActivity() {
        intent.action = Intent.ACTION_GET_CONTENT
        startActivityForResult(Intent.createChooser(intent, "Select Picture"), REQUEST_CODE)
 
-        //val gsReference = storage.getReferenceFromUrl("gs://electronics-store-ca.appspot.com/item_images")
-        //gsReference.downloadUrl.addOnCompleteListener { Log.i("url",it.result.toString())
-         // Picasso.get().load(it.result).into(item_image) }
 
 
 
@@ -166,7 +163,7 @@ class AddItem : AppCompatActivity() {
         if(valid)
         {
 
-            items.push().setValue(Item(title.text.toString(),price.text.toString().toDouble(),amount.text.toString().toInt(),color.text.toString(),category.selectedItem.toString(),"gs://electronics-store-ca.appspot.com/${title.text}"))
+            items.push().setValue(Item(title.text.toString(),price.text.toString().toDouble(),amount.text.toString().toInt(),manufacturer.text.toString(),color.text.toString(),category.selectedItem.toString(),"gs://electronics-store-ca.appspot.com/${title.text}"))
 
             image_ref = storage.getReference(title.text.toString())
 
@@ -176,6 +173,7 @@ class AddItem : AppCompatActivity() {
                 price.setText("")
                 amount.setText("")
                 color.setText("")
+                manufacturer.setText("")
                 category.setSelection(0)
                 item_image.setImageResource(0)
                 Toast.makeText(this,"Item Added", Toast.LENGTH_SHORT).show()
