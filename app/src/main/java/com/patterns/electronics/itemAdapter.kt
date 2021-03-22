@@ -19,7 +19,7 @@ class itemAdapter(val items : ArrayList<Item>) : RecyclerView.Adapter<itemAdapte
     class ViewHolder(itemView : View):RecyclerView.ViewHolder(itemView)
     {
 
-        fun bindItems(item : Item)
+        fun bindItems(item: Item)
         {
             val name = itemView.findViewById(R.id.item_name) as TextView
             val price  = itemView.findViewById(R.id.item_price) as TextView

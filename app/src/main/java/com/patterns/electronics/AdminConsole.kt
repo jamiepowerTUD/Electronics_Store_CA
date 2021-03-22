@@ -31,6 +31,12 @@ class AdminConsole : AppCompatActivity() {
         startActivity(i)
     }
 
+    fun gotoShoppingCart(v : View)
+    {
+        val i = Intent(this , ShoppingCart::class.java)
+        startActivity(i)
+    }
+
 
 
 }
