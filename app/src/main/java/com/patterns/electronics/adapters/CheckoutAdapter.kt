@@ -1,6 +1,5 @@
-package com.patterns.electronics
+package com.patterns.electronics.adapters
 
-import android.media.Image
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +8,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.storage.FirebaseStorage
+import com.patterns.electronics.CartItem
+import com.patterns.electronics.R
 import com.squareup.picasso.Picasso
 
 class checkoutAdapter(val items : ArrayList<CartItem>) : RecyclerView.Adapter<checkoutAdapter.ViewHolder>()

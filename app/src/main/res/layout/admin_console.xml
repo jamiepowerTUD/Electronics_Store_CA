@@ -11,7 +11,7 @@
         android:layout_width="379dp"
         android:layout_height="133dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_compute_logo" />
@@ -21,11 +21,12 @@
         android:layout_width="200dp"
         android:layout_height="70dp"
         android:layout_marginStart="104dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/round_button"
         android:fontFamily="sans-serif-condensed-medium"
         android:onClick="gotoAddItem"
         android:text="Add Item"
+        android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -35,11 +36,12 @@
         android:layout_width="200dp"
         android:layout_height="70dp"
         android:layout_marginStart="104dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/round_button"
         android:fontFamily="sans-serif-condensed-medium"
         android:onClick="gotoCatalogue"
         android:text="Catalogue"
+        android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_button2" />
@@ -49,11 +51,12 @@
         android:layout_width="200dp"
         android:layout_height="70dp"
         android:layout_marginStart="104dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/round_button"
         android:fontFamily="sans-serif-condensed-medium"
-        android:text="Shopping Cart"
         android:onClick="gotoShoppingCart"
+        android:text="Shopping Cart"
+        android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search_button" />
@@ -70,4 +73,37 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <Button
+        android:id="@+id/stockmanager_button"
+        android:layout_width="200dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/round_button"
+        android:fontFamily="sans-serif-condensed-light"
+        android:onClick="gotoStockManager"
+        android:text="Stock Manager"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shopping_cart_button" />
+
+    <Button
+        android:id="@+id/stockmanager_button2"
+        android:layout_width="200dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/round_button"
+        android:fontFamily="sans-serif-condensed-light"
+        android:text="User Manager"
+        android:onClick="gotoUserManager"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stockmanager_button" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

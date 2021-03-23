@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/off_white"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/update_amount_field"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/round_text"
+        android:ems="10"
+        android:inputType="number"
+        android:hint="Amount"
+        app:layout_constraintStart_toEndOf="@+id/item_management_amount"
+        app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+    <TextView
+        android:id="@+id/item_management_amount"
+        android:layout_width="81dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="57dp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_management_price" />
+
+    <Button
+        android:id="@+id/delete_button"
+        android:layout_width="99dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="152dp"
+        android:layout_marginTop="36dp"
+        android:backgroundTint="@color/red"
+        android:text="Delete"
+        android:onClick="deleteItem"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/update_amount_field" />
+
+    <Button
+        android:id="@+id/update_amount_button2"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="56dp"
+        android:background="@drawable/round_button"
+        android:text="Update"
+        android:onClick="updateAmount"
+        app:layout_constraintStart_toEndOf="@+id/update_amount_field"
+        app:layout_constraintTop_toBottomOf="@+id/update_price_button" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="71dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="163dp"
+        android:layout_marginTop="20dp"
+        android:text="Amount"
+        android:textColor="@color/blue"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/update_price_field" />
+
+    <ImageView
+        android:id="@+id/item_manager_image"
+        android:layout_width="167dp"
+        android:layout_height="142dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="85dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="219dp"
+        android:text="Title"
+        android:textColor="@color/blue"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/item_management_name"
+        android:layout_width="180dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="59dp"
+        android:layout_marginTop="46dp"
+        android:text="Title"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/item_manager_image" />
+
+    <TextView
+        android:id="@+id/item_management_man"
+        android:layout_width="180dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="17dp"
+        android:text="man"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/textView19"
+        app:layout_constraintTop_toBottomOf="@+id/item_management_name" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="16dp"
+        android:text="Manufacturer"
+        android:textColor="@color/blue"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="82dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="15dp"
+        android:text="Category"
+        android:textColor="@color/blue"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="14dp"
+        android:text="Color"
+        android:textColor="@color/blue"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+    <TextView
+        android:id="@+id/item_management_color"
+        android:layout_width="180dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="95dp"
+        android:layout_marginTop="14dp"
+        android:text="color"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/textView16"
+        app:layout_constraintTop_toBottomOf="@+id/item_management_category" />
+
+    <TextView
+        android:id="@+id/item_management_category"
+        android:layout_width="180dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="15dp"
+        android:text="cat"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/textView20"
+        app:layout_constraintTop_toBottomOf="@+id/item_management_man" />
+
+    <EditText
+        android:id="@+id/update_price_field"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/round_text"
+        android:ems="10"
+        android:hint="Price"
+        android:inputType="number"
+        app:layout_constraintStart_toEndOf="@+id/item_management_price"
+        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+    <Button
+        android:id="@+id/update_price_button"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="62dp"
+        android:background="@drawable/round_button"
+        android:text="Update"
+        android:onClick="updatePrice"
+        app:layout_constraintStart_toEndOf="@+id/update_price_field"
+        app:layout_constraintTop_toBottomOf="@+id/item_management_color" />
+
+    <TextView
+        android:id="@+id/item_management_price"
+        android:layout_width="81dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="60dp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="166dp"
+        android:layout_marginTop="25dp"
+        android:text="Price"
+        android:textColor="@color/blue"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_management_color" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

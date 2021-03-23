@@ -1,4 +1,4 @@
-package com.patterns.electronics
+package com.patterns.electronics.adapters
 
 import android.content.Intent
 import android.util.Log
@@ -9,6 +9,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.storage.FirebaseStorage
+import com.patterns.electronics.Item
+import com.patterns.electronics.ItemPage
+import com.patterns.electronics.R
 import com.squareup.picasso.Picasso
 
 class itemAdapter(val items : ArrayList<Item>) : RecyclerView.Adapter<itemAdapter.ViewHolder>()
@@ -46,7 +49,7 @@ class itemAdapter(val items : ArrayList<Item>) : RecyclerView.Adapter<itemAdapte
         val v = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
         v.setOnClickListener {
 
-            val i = Intent(v.context,ItemPage::class.java)
+            val i = Intent(v.context, ItemPage::class.java)
             val name = v.findViewById<TextView>(R.id.item_name)
             i.putExtra("name",name.text.toString())
             v.context.startActivity(i)

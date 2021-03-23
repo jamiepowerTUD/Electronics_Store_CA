@@ -1,10 +1,12 @@
-package com.patterns.electronics
+package com.patterns.electronics.adapters
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.patterns.electronics.R
+import com.patterns.electronics.Review
 
 class reviewAdapter(val reviews : ArrayList<Review>) : RecyclerView.Adapter<reviewAdapter.ViewHolder>()
 {

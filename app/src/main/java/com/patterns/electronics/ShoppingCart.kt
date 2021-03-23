@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.patterns.electronics.adapters.checkoutAdapter
 
 class ShoppingCart : AppCompatActivity()
 {
@@ -19,6 +20,8 @@ class ShoppingCart : AppCompatActivity()
 
     lateinit var cart_ref : DatabaseReference
     lateinit var item_ref: DatabaseReference
+    lateinit var history_ref : DatabaseReference
+
     lateinit var basket : ArrayList<CartItem>
 
     lateinit var adapter : checkoutAdapter
@@ -39,6 +42,8 @@ class ShoppingCart : AppCompatActivity()
 
         cart_ref = FirebaseDatabase.getInstance().getReference("Cart")
         item_ref = FirebaseDatabase.getInstance().getReference("Item")
+        history_ref = FirebaseDatabase.getInstance().getReference("History")
+
 
         cart_ref.addListenerForSingleValueEvent(object : ValueEventListener
         {

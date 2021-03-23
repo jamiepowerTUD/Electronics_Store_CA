@@ -37,6 +37,19 @@ class AdminConsole : AppCompatActivity() {
         startActivity(i)
     }
 
+    fun gotoStockManager(v : View)
+    {
+        val i = Intent(this , StockManagement::class.java)
+        startActivity(i)
+    }
+
+    fun gotoUserManager(v : View)
+    {
+        val i = Intent(this , UserManagement::class.java)
+        startActivity(i)
+    }
+
+
 
 
 }
