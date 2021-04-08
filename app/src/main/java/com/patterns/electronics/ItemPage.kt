@@ -68,6 +68,8 @@ class ItemPage : AppCompatActivity()
 
         mAuth = FirebaseAuth.getInstance()
 
+        val uid = mAuth.currentUser?.uid.toString()
+
         cart_ref = FirebaseDatabase.getInstance().getReference("Cart")
         item_ref = FirebaseDatabase.getInstance().getReference("Item")
         review_ref = FirebaseDatabase.getInstance().getReference("Review")
@@ -96,6 +98,42 @@ class ItemPage : AppCompatActivity()
                             Picasso.get().load(it.result).into(image) }
 
 
+
+                        user_ref.addListenerForSingleValueEvent(object : ValueEventListener{
+                            override fun onDataChange(snapshot: DataSnapshot) {
+
+                                for(user in snapshot.children)
+                                {
+
+                                    val id = user.child("userID").value.toString()
+
+
+                                    if(uid == id)
+                                    {
+                                        val dis = user.child("discount").value.toString().toBoolean()
+
+                                        if(dis)
+                                        {
+                                            val oldPrice = snap.child("price").value.toString().toDouble() * 0.8
+                                            price.text = "(20 %) " + oldPrice.toString()
+                                            price.setTextColor(resources.getColor(R.color.red))
+                                        }
+
+
+                                    }
+
+                                }
+
+
+                            }
+
+                            override fun onCancelled(error: DatabaseError) {
+                                TODO("Not yet implemented")
+                            }
+                        })
+
+
+
                         progress.dismiss()
                     }
 
@@ -106,6 +144,9 @@ class ItemPage : AppCompatActivity()
                 TODO("Not yet implemented")
             }
         })
+
+
+
 
     }
 

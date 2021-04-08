@@ -132,6 +132,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/history_recycler"
         android:layout_width="match_parent"
         android:layout_height="280dp"
         android:layout_marginBottom="19dp"
@@ -143,7 +144,7 @@
         android:layout_width="84dp"
         android:layout_height="30dp"
         android:layout_marginStart="164dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="20dp"
         android:text="History"
         android:textColor="@color/blue"
         android:textSize="20dp"

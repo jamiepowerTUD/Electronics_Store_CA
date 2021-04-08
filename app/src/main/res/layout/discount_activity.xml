@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/code_field"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/round_text"
+        android:ems="10"
+        android:hint="Code"
+        android:inputType="textPersonName"
+        android:shadowColor="@color/black"
+        android:shadowRadius="4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/applied_display" />
+
+    <Button
+        android:id="@+id/check_code"
+        android:layout_width="150dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/round_button"
+        android:onClick="validateCode"
+        android:text="Validate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/code_field" />
+
+    <ImageView
+        android:id="@+id/code_status"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView21"
+        app:srcCompat="@drawable/ic_price_tag" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="243dp"
+        android:layout_height="78dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="50dp"
+        android:fontFamily="sans-serif-condensed-light"
+        android:text="Promo Code"
+        android:textColor="@color/blue"
+        android:textSize="45dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/applied_display"
+        android:layout_width="150dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="36dp"
+        android:textAlignment="center"
+        android:textColor="#2db92d"
+        android:textSize="18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/code_status" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

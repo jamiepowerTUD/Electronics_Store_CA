@@ -1,15 +1,19 @@
 package com.patterns.electronics
 
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.patterns.electronics.adapters.checkoutAdapter
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class ShoppingCart : AppCompatActivity()
 {
@@ -25,6 +29,7 @@ class ShoppingCart : AppCompatActivity()
     lateinit var basket : ArrayList<CartItem>
 
     lateinit var adapter : checkoutAdapter
+    lateinit var id : String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +41,7 @@ class ShoppingCart : AppCompatActivity()
 
         mAuth = FirebaseAuth.getInstance()
 
-        val id = mAuth.currentUser?.uid
+         id = mAuth.currentUser?.uid.toString()
 
         basket = ArrayList()
 
@@ -101,6 +106,7 @@ class ShoppingCart : AppCompatActivity()
                     val amount = snap.child("amount").value.toString().toInt()
 
                     item_ref.addListenerForSingleValueEvent(object  : ValueEventListener{
+                        @RequiresApi(Build.VERSION_CODES.O)
                         override fun onDataChange(snapshot: DataSnapshot)
                         {
                             for(item in snapshot.children)
@@ -117,13 +123,25 @@ class ShoppingCart : AppCompatActivity()
                                         item_ref.child(item.key.toString()).child("amount").setValue(stock-amount)
                                         cart_ref.child(snap.key.toString()).removeValue()
 
+                                        val price = item.child("price").value.toString().toDouble()
+                                        val image = item.child("image_uri").value.toString()
+                                        val cur = LocalDateTime.now()
+                                        val formatted = cur.format(DateTimeFormatter.ofPattern("MM-dd HH:mm"))
+
+
+                                        history_ref.push().setValue(History(id,title,price,amount,image,formatted))
+
                                         for(i in 0..basket.size)
                                         {
-                                          if(basket.get(i).item_name == name)
-                                          {
-                                              basket.removeAt(i)
-                                              break
-                                          }
+                                            if(basket.isNotEmpty())
+                                            {
+                                                if(basket.get(i).item_name == name)
+                                                {
+                                                    basket.removeAt(i)
+                                                    break
+                                                }
+                                            }
+
                                         }
 
                                     }

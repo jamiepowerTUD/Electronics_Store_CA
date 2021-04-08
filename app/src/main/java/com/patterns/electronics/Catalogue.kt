@@ -4,27 +4,47 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.Window
+import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioButton
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.drawable.toDrawable
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.chip.Chip
 import com.google.firebase.database.*
 import com.patterns.electronics.adapters.itemAdapter
+import java.util.*
+import kotlin.collections.ArrayList
 
 class Catalogue : AppCompatActivity() {
 
     lateinit var items: ArrayList<Item>
 
 
+    lateinit var current : ArrayList<Item>
+
     lateinit var item_ref: DatabaseReference
     lateinit var recycler : RecyclerView
 
     lateinit var searchField : EditText
 
+
     lateinit var name_radio : RadioButton
     lateinit var cat_radio : RadioButton
     lateinit var man_radio : RadioButton
+
+    lateinit var title_order : Button
+    lateinit var man_order : Button
+    lateinit var price_order : Button
+
+    var title_activated = false
+
+    var titleStatus = false
+    var manStatus = false
+    var priceStatus = false
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +56,12 @@ class Catalogue : AppCompatActivity() {
         cat_radio = findViewById(R.id.cat_radio)
         man_radio = findViewById(R.id.man_radio)
 
+        title_order = findViewById(R.id.title_order_button)
+        man_order = findViewById(R.id.man_order_button)
+        price_order = findViewById(R.id.price_order_button)
+
+
+        current = ArrayList()
 
         searchField = findViewById(R.id.search_box)
 
@@ -69,6 +95,7 @@ class Catalogue : AppCompatActivity() {
                     items.add(item)
                     adapter.notifyDataSetChanged()
                 }
+                current.addAll(items)
 
 
 
@@ -103,6 +130,9 @@ class Catalogue : AppCompatActivity() {
 
             }
 
+            current.clear()
+            current.addAll(temp)
+
             val adapter = itemAdapter(temp)
             recycler.adapter = adapter
         }
@@ -115,6 +145,9 @@ class Catalogue : AppCompatActivity() {
                     temp.add(i)
                 }
             }
+
+            current.clear()
+            current.addAll(temp)
 
             val adapter = itemAdapter(temp)
             recycler.adapter = adapter
@@ -130,13 +163,81 @@ class Catalogue : AppCompatActivity() {
                 }
             }
 
+            current.clear()
+            current.addAll(temp)
+
             val adapter = itemAdapter(temp)
             recycler.adapter = adapter
         }
+    }
 
+
+    fun orderTitle(v : View)
+    {
+        price_order.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0)
+        man_order.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0)
+
+
+            titleStatus = if(!titleStatus) {
+                title_order.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.up,0)
+                current.sortBy { it.name }
+                true
+            } else {
+                current.sortByDescending { it.name }
+                title_order.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.down,0)
+                false
+            }
+
+
+        val adapter = itemAdapter(current)
+        recycler.adapter = adapter
 
 
     }
+
+    fun orderMan(v : View)
+    {
+        title_order.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0)
+        price_order.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0)
+
+        manStatus = if(!manStatus) {
+            man_order.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.up,0)
+            current.sortBy { it.manufacturer }
+            true
+        } else {
+            current.sortByDescending { it.manufacturer }
+            man_order.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.down,0)
+            false
+        }
+
+        val adapter = itemAdapter(current)
+        recycler.adapter = adapter
+
+    }
+
+
+    fun orderPrice(v : View)
+    {
+        title_order.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0)
+        man_order.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0)
+
+        priceStatus = if(!priceStatus) {
+            price_order.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.up,0)
+            current.sortBy { it.price}
+            true
+        } else {
+            current.sortByDescending { it.price }
+            price_order.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.down,0)
+            false
+        }
+
+        val adapter = itemAdapter(current)
+        recycler.adapter = adapter
+    }
+
+
+
+
 
 
 
