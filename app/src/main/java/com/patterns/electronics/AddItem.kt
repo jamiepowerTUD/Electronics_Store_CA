@@ -30,9 +30,9 @@ class AddItem : AppCompatActivity() {
     lateinit var category : Spinner
     lateinit var item_image : ImageView
 
-    lateinit var storage : FirebaseStorage
-    lateinit var image_ref : StorageReference
-    lateinit var items : DatabaseReference
+
+
+    lateinit var proxy : FirebaseProxy
 
     lateinit var imageUri : Uri
 
@@ -54,12 +54,8 @@ class AddItem : AppCompatActivity() {
         color = findViewById(R.id.item_colour_field)
         item_image = findViewById(R.id.item_image)
 
-        storage = FirebaseStorage.getInstance()
 
 
-
-
-        items = FirebaseDatabase.getInstance().getReference("Item")
 
 
         val adapter = ArrayAdapter(
@@ -163,23 +159,21 @@ class AddItem : AppCompatActivity() {
         if(valid)
         {
 
-            items.push().setValue(Item(title.text.toString(),price.text.toString().toDouble(),amount.text.toString().toInt(),manufacturer.text.toString(),color.text.toString(),category.selectedItem.toString(),"gs://electronics-store-ca.appspot.com/${title.text}"))
 
-            image_ref = storage.getReference(title.text.toString())
+            proxy = ItemProxy()
 
-            image_ref.putFile(imageUri).addOnSuccessListener {
-                Log.i("Cloud store", it.metadata?.path.toString())
-                title.setText("")
-                price.setText("")
-                amount.setText("")
-                color.setText("")
-                manufacturer.setText("")
-                category.setSelection(0)
-                item_image.setImageResource(0)
-                Toast.makeText(this,"Item Added", Toast.LENGTH_SHORT).show()
+            val item = Item(title.text.toString(),price.text.toString().toDouble(),amount.text.toString().toInt(),manufacturer.text.toString(),color.text.toString(),category.selectedItem.toString(),"gs://electronics-store-ca.appspot.com/${title.text}")
 
+            proxy.add(item,imageUri)
 
-            }
+            title.setText("")
+            price.setText("")
+            amount.setText("")
+            color.setText("")
+            manufacturer.setText("")
+            category.setSelection(0)
+            item_image.setImageResource(0)
+            Toast.makeText(this,"Item Added", Toast.LENGTH_SHORT).show()
 
 
         }

@@ -20,7 +20,8 @@ class Register : AppCompatActivity()
     lateinit var nameField : EditText
 
     lateinit var mAuth : FirebaseAuth
-    lateinit var users : DatabaseReference
+
+    lateinit var proxy : FirebaseProxy
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -37,7 +38,6 @@ class Register : AppCompatActivity()
 
 
         mAuth = FirebaseAuth.getInstance()
-        users = FirebaseDatabase.getInstance().getReference("User")
     }
 
 
@@ -124,8 +124,14 @@ class Register : AppCompatActivity()
                         val user = FirebaseAuth.getInstance().currentUser
                         if (user != null) {
 
+                            proxy = UserProxy()
+
                             val card = "${numberField.text}-${dateField.text}-${cvvField.text}"
-                            users.push().setValue(User(user.uid,nameField.text.toString(),emailField.text.toString(),addressField.text.toString(),card,false,false))
+                            val newUser = User(user.uid,nameField.text.toString(),emailField.text.toString(),addressField.text.toString(),card,false,false)
+
+                            proxy.add(newUser)
+
+
 
                             nameField.setText("")
                             emailField.setText("")

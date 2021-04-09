@@ -41,6 +41,9 @@ class Catalogue : AppCompatActivity() {
 
     var title_activated = false
 
+    lateinit var Sorter : SortStrategy
+
+
     var titleStatus = false
     var manStatus = false
     var priceStatus = false
@@ -116,19 +119,19 @@ class Catalogue : AppCompatActivity() {
 
     fun filter(v : View)
     {
-        val temp = ArrayList<Item>()
+        var strategy : FilterStrategy
+        var temp: ArrayList<Item>
+
         val search = searchField.text.toString().toLowerCase()
+
+
+
         if (name_radio.isChecked)
         {
 
-            for(i in items)
-            {
-                if(i.name.toLowerCase().contains(search))
-                {
-                    temp.add(i)
-                }
+            strategy = TitleFilter()
+            temp = strategy.filter(search,items)
 
-            }
 
             current.clear()
             current.addAll(temp)
@@ -138,13 +141,9 @@ class Catalogue : AppCompatActivity() {
         }
         else if(cat_radio.isChecked)
         {
-            for(i in items)
-            {
-                if(i.category.toLowerCase().contains(search))
-                {
-                    temp.add(i)
-                }
-            }
+
+            strategy = CategoryFilter()
+            temp = strategy.filter(search,items)
 
             current.clear()
             current.addAll(temp)
@@ -155,13 +154,11 @@ class Catalogue : AppCompatActivity() {
         }
         else if(man_radio.isChecked)
         {
-            for(i in items)
-            {
-                if(i.manufacturer.equals(search,ignoreCase = true))
-                {
-                    temp.add(i)
-                }
-            }
+           
+            strategy = ManufacturFilter()
+            
+            temp = strategy.filter(search,items)
+            
 
             current.clear()
             current.addAll(temp)
@@ -169,6 +166,9 @@ class Catalogue : AppCompatActivity() {
             val adapter = itemAdapter(temp)
             recycler.adapter = adapter
         }
+
+
+
     }
 
 
@@ -178,12 +178,15 @@ class Catalogue : AppCompatActivity() {
         man_order.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0)
 
 
+        Sorter = TitleSort()
+
+
             titleStatus = if(!titleStatus) {
                 title_order.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.up,0)
-                current.sortBy { it.name }
+                current = Sorter.ascending(current)
                 true
             } else {
-                current.sortByDescending { it.name }
+                current = Sorter.descending(current)
                 title_order.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.down,0)
                 false
             }
@@ -197,15 +200,18 @@ class Catalogue : AppCompatActivity() {
 
     fun orderMan(v : View)
     {
+        Sorter = ManufacturSort()
+
+
         title_order.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0)
         price_order.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0)
 
         manStatus = if(!manStatus) {
             man_order.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.up,0)
-            current.sortBy { it.manufacturer }
+            current = Sorter.ascending(current)
             true
         } else {
-            current.sortByDescending { it.manufacturer }
+            current = Sorter.descending(current)
             man_order.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.down,0)
             false
         }
@@ -218,15 +224,18 @@ class Catalogue : AppCompatActivity() {
 
     fun orderPrice(v : View)
     {
+        Sorter = PriceSort()
+
+
         title_order.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0)
         man_order.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0)
 
         priceStatus = if(!priceStatus) {
             price_order.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.up,0)
-            current.sortBy { it.price}
+            current = Sorter.ascending(current)
             true
         } else {
-            current.sortByDescending { it.price }
+            current = Sorter.descending(current)
             price_order.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.down,0)
             false
         }

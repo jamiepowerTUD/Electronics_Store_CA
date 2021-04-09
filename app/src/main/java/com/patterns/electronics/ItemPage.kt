@@ -41,6 +41,8 @@ class ItemPage : AppCompatActivity()
     lateinit var image : ImageView
     lateinit var imageURI : String
 
+    var isDiscount = false
+
     lateinit var progress : ProgressDialog
 
 
@@ -61,6 +63,7 @@ class ItemPage : AppCompatActivity()
         cat = findViewById(R.id.item_page_cat)
         amount = findViewById(R.id.item_page_amount)
         color = findViewById(R.id.item_page_color)
+
 
         progress = ProgressDialog(this)
         progress.show()
@@ -110,9 +113,9 @@ class ItemPage : AppCompatActivity()
 
                                     if(uid == id)
                                     {
-                                        val dis = user.child("discount").value.toString().toBoolean()
+                                       isDiscount = user.child("discount").value.toString().toBoolean()
 
-                                        if(dis)
+                                        if(isDiscount)
                                         {
                                             val oldPrice = snap.child("price").value.toString().toDouble() * 0.8
                                             price.text = "(20 %) " + oldPrice.toString()
@@ -161,12 +164,19 @@ class ItemPage : AppCompatActivity()
         else
         {
 
+            var pce = price.text.toString()
+
+            if(isDiscount)
+            {
+                pce = pce.substring(7,pce.length)
+            }
+
 
             val id = mAuth.currentUser?.uid
 
             if(amount.text.toString().toInt() > 0 )
             {
-                cart_ref.push().setValue(CartItem(id.toString(),title.text.toString(),1,price.text.toString().toDouble(),imageURI))
+                cart_ref.push().setValue(CartItem(id.toString(),title.text.toString(),1,pce.toDouble(),imageURI))
                 Toast.makeText(this,"Added to Basket",Toast.LENGTH_LONG).show()
             }
 

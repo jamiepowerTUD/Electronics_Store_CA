@@ -34,6 +34,8 @@ class ItemManagementPage : AppCompatActivity()
     lateinit var price_field : EditText
     lateinit var amount_field : EditText
 
+    lateinit var proxy : FirebaseProxy
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,6 +61,11 @@ class ItemManagementPage : AppCompatActivity()
 
         item_ref = FirebaseDatabase.getInstance().getReference("Item")
         cart_ref = FirebaseDatabase.getInstance().getReference("Cart")
+
+
+        proxy = ItemProxy()
+
+
 
 
         item_ref.addValueEventListener(object : ValueEventListener {
@@ -110,31 +117,9 @@ class ItemManagementPage : AppCompatActivity()
             }
             else
             {
-                item_ref.addListenerForSingleValueEvent(object : ValueEventListener
-                {
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        for(snap in snapshot.children)
-                        {
-                            val name = snap.child("name").value.toString()
 
-                            if(name == title.text.toString())
-                            {
-                                Log.i("Firebase", snap.key.toString())
-                                Log.i("Firebase", snap.child("amount").value.toString())
-
-                                item_ref.child(snap.key.toString()).child("amount").setValue(amount_field.text.toString().toInt())
-
-                            }
-
-                        }
-                    }
-
-                    override fun onCancelled(error: DatabaseError) {
-                        TODO("Not yet implemented")
-                    }
-
-                })
-
+                proxy.update(title.text.toString(),"amount",amount_field.text.toString().toInt())
+                amount_field.setText("")
 
             }
 
@@ -154,28 +139,9 @@ class ItemManagementPage : AppCompatActivity()
         }
         else
         {
-            item_ref.addListenerForSingleValueEvent(object : ValueEventListener
-            {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    for(snap in snapshot.children)
-                    {
-                        val name = snap.child("name").value.toString()
+            proxy.update(title.text.toString(),"price",price_field.text.toString().toDouble())
+            price_field.setText("")
 
-                        if(name == title.text.toString())
-                        {
-
-                            item_ref.child(snap.key.toString()).child("price").setValue(price_field.text.toString().toDouble())
-
-                        }
-
-                    }
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
-                }
-
-            })
         }
     }
 
@@ -185,57 +151,13 @@ class ItemManagementPage : AppCompatActivity()
     fun deleteItem(v : View)
     {
 
+        proxy.delete(title.text.toString())
 
-        item_ref.addListenerForSingleValueEvent(object : ValueEventListener
-        {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                for(snap in snapshot.children)
-                {
-                    val name = snap.child("name").value.toString()
-
-                    if(name == title.text.toString())
-                    {
-
-                        item_ref.child(snap.key.toString()).removeValue()
+        Toast.makeText(this@ItemManagementPage,"Item Deleted", Toast.LENGTH_LONG).show()
+        val i = Intent(this@ItemManagementPage,StockManagement::class.java)
+        startActivity(i)
 
 
-                        cart_ref.addListenerForSingleValueEvent(object : ValueEventListener{
-
-                            override fun onDataChange(snapshot: DataSnapshot) {
-                                for(cart in snapshot.children)
-                                {
-                                    val cart_name = snap.child("item_name").value.toString()
-
-                                    if(cart_name == title.text.toString())
-                                    {
-                                        cart_ref.child(cart.key.toString()).removeValue()
-
-                                    }
-
-                                }
-
-                                Toast.makeText(this@ItemManagementPage,"Item Deleted",Toast.LENGTH_LONG).show()
-                                val i = Intent(this@ItemManagementPage,StockManagement::class.java)
-                                startActivity(i)
-                            }
-
-                            override fun onCancelled(error: DatabaseError) {
-                                TODO("Not yet implemented")
-                            }
-                        })
-
-
-
-                    }
-
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-
-        })
 
 
     }
