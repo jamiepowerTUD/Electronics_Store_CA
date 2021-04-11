@@ -41,14 +41,17 @@ class checkoutAdapter(val items : ArrayList<CartItem>) : RecyclerView.Adapter<ch
             val price = itemView.findViewById<TextView>(R.id.cart_item_price)
             val amount = itemView.findViewById<TextView>(R.id.cart_item_amount)
             val image = itemView.findViewById<ImageView>(R.id.cart_item_image)
+            val man = itemView.findViewById<TextView>(R.id.cart_item_man)
 
-            name.text = item.item_name
+
+            name.text = item.flyweight.name
             price.text = item.price.toString()
             amount.text = item.amount.toString()
+            man.text = item.flyweight.manufacturer
 
 
             val storage = FirebaseStorage.getInstance()
-            val gsReference = storage.getReferenceFromUrl(item.imageURI)
+            val gsReference = storage.getReferenceFromUrl(item.flyweight.imageURI)
             gsReference.downloadUrl.addOnCompleteListener { Log.i("url",it.result.toString())
                 Picasso.get().load(it.result).into(image) }
 

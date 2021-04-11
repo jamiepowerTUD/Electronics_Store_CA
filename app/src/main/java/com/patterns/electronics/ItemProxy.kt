@@ -86,6 +86,8 @@ class ItemProxy : FirebaseProxy {
 
     override fun delete(obj : String) {
 
+        item_ref = FirebaseDatabase.getInstance().getReference("Item")
+
         cart_ref = FirebaseDatabase.getInstance().getReference("Cart")
 
         item_ref.addListenerForSingleValueEvent(object : ValueEventListener

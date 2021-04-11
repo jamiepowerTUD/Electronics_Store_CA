@@ -176,7 +176,7 @@ class ItemPage : AppCompatActivity()
 
             if(amount.text.toString().toInt() > 0 )
             {
-                cart_ref.push().setValue(CartItem(id.toString(),title.text.toString(),1,pce.toDouble(),imageURI))
+                cart_ref.push().setValue(CartItem(1,pce.toDouble(),CartItemFlyweight(id.toString(),title.text.toString(),man.text.toString(),imageURI)))
                 Toast.makeText(this,"Added to Basket",Toast.LENGTH_LONG).show()
             }
 
@@ -253,7 +253,7 @@ class ItemPage : AppCompatActivity()
         val bar = dialog.findViewById<SeekBar>(R.id.score_seeker)
         bar.progress = 5
         val current = dialog.findViewById<TextView>(R.id.seek_no)
-        val submit = dialog.findViewById<Button>(R.id.submit_review)
+        val submit = dialog.findViewById<Button>(R.id.submit_card_update)
         val comment = dialog.findViewById<EditText>(R.id.comment_field)
 
 

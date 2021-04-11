@@ -1,6 +1,10 @@
 package com.patterns.electronics
 
+import android.app.Dialog
 import android.os.Bundle
+import android.view.View
+import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,6 +20,8 @@ class UserProfile : AppCompatActivity()
     lateinit var history_ref : DatabaseReference
     lateinit var mAuth: FirebaseAuth
 
+    lateinit var id : String
+
 
     lateinit var name : TextView
     lateinit var email : TextView
@@ -23,6 +29,8 @@ class UserProfile : AppCompatActivity()
     lateinit var card : TextView
 
     lateinit var recycler : RecyclerView
+
+    lateinit var proxy : FirebaseProxy
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -37,6 +45,8 @@ class UserProfile : AppCompatActivity()
         card = findViewById(R.id.user_profile_card)
 
         recycler = findViewById(R.id.history_recycler)
+
+        proxy = UserProxy()
 
         mAuth = FirebaseAuth.getInstance()
 
@@ -88,10 +98,12 @@ class UserProfile : AppCompatActivity()
                 {
                     val user_id = snap.child("user_id").value.toString()
 
-                    val id = mAuth.currentUser?.uid.toString()
+                    val cid = mAuth.currentUser?.uid.toString()
 
-                    if(user_id == id)
+                    if(user_id == cid)
                     {
+                        id = cid
+
                         val name = snap.child("name").value.toString()
                         val price = snap.child("price").value.toString().toDouble()
                         val amount = snap.child("amount").value.toString().toInt()
@@ -118,10 +130,93 @@ class UserProfile : AppCompatActivity()
             }
         })
 
+    }
 
 
 
 
+
+    fun updateCard(v : View)
+    {
+        var valid = true
+
+        // Ensures date is within 12 months and not before 2021
+        val regex = "(0[1-9]|1[0-2])-2[1-9]".toRegex()
+
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.update_card_dialog)
+
+        val update = dialog.findViewById<Button>(R.id.submit_card_update)
+
+        val numberField = dialog.findViewById<EditText>(R.id.update_card_number_field)
+
+        val dateField = dialog.findViewById<EditText>(R.id.update_card_expiry_field)
+
+        val cvvField = dialog.findViewById<EditText>(R.id.update_card_cvv_field)
+
+
+        update.setOnClickListener {
+
+            if(dateField.text.isEmpty())
+            {
+                dateField.error = "Expiry Date Required"
+                valid = false
+            } else if(!regex.containsMatchIn(dateField.text))
+            {
+                dateField.error = "Date format invalid (MM-YY)"
+                valid = false
+            }
+
+            if(numberField.text.isEmpty())
+            {
+                numberField.error = "Card Number required"
+                valid = false
+            }
+            else if(numberField.text.length != 16)
+            {
+                numberField.error = "Card Number must be 16 digits"
+                valid = false
+            }
+
+
+            if(cvvField.text.isEmpty())
+            {
+                cvvField.error = "CVV required"
+                valid = false
+            }
+            else if(cvvField.text.length < 3 || cvvField.text.length > 3)
+            {
+                cvvField.error = "CVV must only be 3 characters"
+                valid = false
+            }
+
+
+            if (valid)
+            {
+
+                proxy.update(id,"card","${numberField.text.toString()}-${numberField.text.toString()}-${cvvField.text.toString()}")
+
+                dialog.dismiss()
+
+
+            }
+        }
+
+
+        dialog.show()
 
     }
+
+
+
+    fun deleteUser(v : View)
+    {
+        proxy.delete(id)
+    }
+
+
+
+
+
+
 }

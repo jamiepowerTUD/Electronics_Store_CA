@@ -37,6 +37,8 @@ class ShoppingCart : AppCompatActivity()
         setContentView(R.layout.checkout_activity)
 
 
+
+
         recycler = findViewById(R.id.checkout_recycler)
 
         mAuth = FirebaseAuth.getInstance()
@@ -55,14 +57,15 @@ class ShoppingCart : AppCompatActivity()
             override fun onDataChange(snapshot: DataSnapshot) {
                for (snap in snapshot.children)
                {
-                   if(snap.child("userid").value.toString() == id)
+                   if(snap.child("flyweight").child("userID").value.toString() == id)
                    {
-                       val name = snap.child("item_name").value.toString()
+                       val name = snap.child("flyweight").child("name").value.toString()
+                       val man = snap.child("flyweight").child("manufacturer").value.toString()
                        val price = snap.child("price").value.toString().toDouble()
                        val amount = snap.child("amount").value.toString().toInt()
-                       val image = snap.child("imageURI").value.toString()
+                       val image = snap.child("flyweight").child("imageURI").value.toString()
 
-                       basket.add(CartItem(id,name,amount,price,image))
+                       basket.add(CartItem(amount,price,CartItemFactory.getCartItemFlyweight(name,id,man,image)))
 
                    }
 
@@ -135,7 +138,7 @@ class ShoppingCart : AppCompatActivity()
                                         {
                                             if(basket.isNotEmpty())
                                             {
-                                                if(basket.get(i).item_name == name)
+                                                if(basket.get(i).flyweight.name == name)
                                                 {
                                                     basket.removeAt(i)
                                                     break
