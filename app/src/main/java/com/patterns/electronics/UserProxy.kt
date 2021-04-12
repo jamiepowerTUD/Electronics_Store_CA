@@ -55,6 +55,10 @@ class UserProxy : FirebaseProxy {
 
         val history_ref = FirebaseDatabase.getInstance().getReference("History")
 
+        val cart_ref = FirebaseDatabase.getInstance().getReference("Cart")
+
+
+
         user_ref.addListenerForSingleValueEvent(object  : ValueEventListener{
 
 
@@ -93,6 +97,31 @@ class UserProxy : FirebaseProxy {
                                 TODO("Not yet implemented")
                             }
                         })
+
+
+                        cart_ref.addListenerForSingleValueEvent(object : ValueEventListener{
+
+                            override fun onDataChange(snapshot: DataSnapshot) {
+
+                                for(cart in snapshot.children)
+                                {
+                                    val cartID = snap.child("flyweight").child("userID").value.toString()
+
+                                    if (cartID == obj)
+                                    {
+                                        cart_ref.child(cart.key.toString()).removeValue()
+
+                                    }
+
+                                }
+
+                            }
+
+                            override fun onCancelled(error: DatabaseError) {
+                                TODO("Not yet implemented")
+                            }
+                        })
+
 
 
 

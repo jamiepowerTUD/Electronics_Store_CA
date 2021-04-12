@@ -62,10 +62,9 @@ class ShoppingCart : AppCompatActivity()
                        val name = snap.child("flyweight").child("name").value.toString()
                        val man = snap.child("flyweight").child("manufacturer").value.toString()
                        val price = snap.child("price").value.toString().toDouble()
-                       val amount = snap.child("amount").value.toString().toInt()
                        val image = snap.child("flyweight").child("imageURI").value.toString()
 
-                       basket.add(CartItem(amount,price,CartItemFactory.getCartItemFlyweight(name,id,man,image)))
+                       basket.add(CartItem(price,CartItemFactory.getCartItemFlyweight(name,id,man,image)))
 
                    }
 
@@ -105,79 +104,84 @@ class ShoppingCart : AppCompatActivity()
                
                 for (snap in snapshot.children) {
 
-                    val name = snap.child("item_name").value.toString()
-                    val amount = snap.child("amount").value.toString().toInt()
+                    val name = snap.child("flyweight").child("name").value.toString()
+                    val cid = snap.child("flyweight").child("userID").value.toString()
 
-                    item_ref.addListenerForSingleValueEvent(object  : ValueEventListener{
-                        @RequiresApi(Build.VERSION_CODES.O)
-                        override fun onDataChange(snapshot: DataSnapshot)
-                        {
-                            for(item in snapshot.children)
+                    if(cid == id)
+                    {
+                        item_ref.addListenerForSingleValueEvent(object  : ValueEventListener{
+                            @RequiresApi(Build.VERSION_CODES.O)
+                            override fun onDataChange(snapshot: DataSnapshot)
                             {
-                                val title = item.child("name").value.toString()
-                                val stock = item.child("amount").value.toString().toInt()
 
-                                if(name == title)
+                                for(item in snapshot.children)
                                 {
-                                    if(amount <= stock)
+                                    val title = item.child("name").value.toString()
+                                    val stock = item.child("amount").value.toString().toInt()
+
+                                    if(name == title)
                                     {
-                                        Log.i("Firebase", name)
-                                        Log.i("Firebase",item_ref.child(item.key.toString()).child("name").toString())
-                                        item_ref.child(item.key.toString()).child("amount").setValue(stock-amount)
-                                        cart_ref.child(snap.key.toString()).removeValue()
-
-                                        val price = item.child("price").value.toString().toDouble()
-                                        val image = item.child("image_uri").value.toString()
-                                        val cur = LocalDateTime.now()
-                                        val formatted = cur.format(DateTimeFormatter.ofPattern("MM-dd HH:mm"))
-
-
-                                        history_ref.push().setValue(History(id,title,price,amount,image,formatted))
-
-                                        for(i in 0..basket.size)
+                                        if(stock > 0)
                                         {
-                                            if(basket.isNotEmpty())
+
+                                            item_ref.child(item.key.toString()).child("amount").setValue(stock-1)
+                                            cart_ref.child(snap.key.toString()).removeValue()
+
+                                            val price = item.child("price").value.toString().toDouble()
+                                            val image = item.child("image_uri").value.toString()
+                                            val cur = LocalDateTime.now()
+                                            val formatted = cur.format(DateTimeFormatter.ofPattern("MM-dd HH:mm"))
+
+
+                                            history_ref.push().setValue(History(id,title,price,1,image,formatted))
+
+                                            for(i in 0..basket.size)
                                             {
-                                                if(basket.get(i).flyweight.name == name)
+                                                if(basket.isNotEmpty())
                                                 {
-                                                    basket.removeAt(i)
-                                                    break
+                                                    if(basket.get(i).flyweight.name == name)
+                                                    {
+                                                        basket.removeAt(i)
+                                                        break
+                                                    }
                                                 }
+
                                             }
 
                                         }
+                                        else
+                                        {
+                                            valid = false
+                                        }
 
                                     }
-                                    else
-                                    {
-                                        valid = false
-                                    }
 
+
+
+                                }
+
+                                if(!valid)
+                                {
+                                    Toast.makeText(this@ShoppingCart,"Checkout Complete, some items are not in stock unfortunately",Toast.LENGTH_LONG).show()
+                                }
+                                else
+                                {
+                                    Toast.makeText(this@ShoppingCart,"Checkout Complete",Toast.LENGTH_LONG).show()
                                 }
 
 
 
+                                adapter.notifyDataSetChanged()
+
                             }
 
-                            if(!valid)
-                            {
-                                Toast.makeText(this@ShoppingCart,"Checkout Complete, some items are not in stock unfortunately",Toast.LENGTH_LONG).show()
+                            override fun onCancelled(error: DatabaseError) {
+                                TODO("Not yet implemented")
                             }
-                            else
-                            {
-                                Toast.makeText(this@ShoppingCart,"Checkout Complete",Toast.LENGTH_LONG).show()
-                            }
+                        })
+                    }
 
 
-                            basket.clear()
-                            adapter.notifyDataSetChanged()
-
-                        }
-
-                        override fun onCancelled(error: DatabaseError) {
-                            TODO("Not yet implemented")
-                        }
-                    })
 
 
 
@@ -190,6 +194,38 @@ class ShoppingCart : AppCompatActivity()
         })
 
 
+
+    }
+
+
+    fun clear(v : View)
+    {
+        cart_ref.addListenerForSingleValueEvent(object : ValueEventListener{
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                for(snap in snapshot.children)
+                {
+                    val cid = snap.child("flyweight").child("userID").value.toString()
+
+                    if(cid == id)
+                    {
+                        cart_ref.child(snap.key.toString()).removeValue()
+                    }
+
+                }
+
+                basket.clear()
+                adapter.notifyDataSetChanged()
+
+
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
 
     }
 

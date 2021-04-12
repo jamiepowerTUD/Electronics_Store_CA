@@ -18,7 +18,4 @@ class ManufacturFilter : FilterStrategy {
 
         return temp
     }
-
-
-
 }

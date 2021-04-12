@@ -37,7 +37,7 @@ class reviewAdapter(val reviews : ArrayList<Review>) : RecyclerView.Adapter<revi
             val comment = itemView.findViewById(R.id.review_comment) as TextView
 
             name.text = review.name
-            score.text = "${review.score.toString()} / 10"
+            score.text = "${review.score.toString()} / 5"
             date.text = review.dateTime
             comment.text = review.comment
 

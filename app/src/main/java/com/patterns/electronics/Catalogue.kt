@@ -39,7 +39,6 @@ class Catalogue : AppCompatActivity() {
     lateinit var man_order : Button
     lateinit var price_order : Button
 
-    var title_activated = false
 
     lateinit var Sorter : SortStrategy
 
@@ -120,7 +119,7 @@ class Catalogue : AppCompatActivity() {
     fun filter(v : View)
     {
         var strategy : FilterStrategy
-        var temp: ArrayList<Item>
+        val temp: ArrayList<Item>
 
         val search = searchField.text.toString().toLowerCase()
 

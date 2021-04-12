@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -78,6 +79,8 @@ class Discount : AppCompatActivity()
 
     fun validateCode(v : View)
     {
+        var found = false
+
         if(codeField.text.isEmpty())
         {
             codeField.error = "Code field must not be empty"
@@ -109,6 +112,8 @@ class Discount : AppCompatActivity()
 
                                     if(cid == id)
                                     {
+
+                                        found = true
                                         user_ref.child(snap.key.toString()).child("discount").setValue(true)
                                         image.setImageResource(R.drawable.ic_checked)
                                         status.text = "Discount Applied"
@@ -117,6 +122,8 @@ class Discount : AppCompatActivity()
                                     }
 
 
+                                    if(!found)
+                                        Toast.makeText(this@Discount,"Invalid Discount Code",Toast.LENGTH_SHORT).show()
 
                                 }
                             }

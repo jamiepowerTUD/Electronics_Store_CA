@@ -68,7 +68,6 @@ class ItemProxy : FirebaseProxy {
 
                     if(name == obj)
                     {
-
                         item_ref.child(snap.key.toString()).child(key).setValue(value)
 
                     }

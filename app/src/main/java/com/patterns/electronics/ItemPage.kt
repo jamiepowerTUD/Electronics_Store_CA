@@ -176,7 +176,7 @@ class ItemPage : AppCompatActivity()
 
             if(amount.text.toString().toInt() > 0 )
             {
-                cart_ref.push().setValue(CartItem(1,pce.toDouble(),CartItemFlyweight(id.toString(),title.text.toString(),man.text.toString(),imageURI)))
+                cart_ref.push().setValue(CartItem(pce.toDouble(),CartItemFlyweight(id.toString(),title.text.toString(),man.text.toString(),imageURI)))
                 Toast.makeText(this,"Added to Basket",Toast.LENGTH_LONG).show()
             }
 
