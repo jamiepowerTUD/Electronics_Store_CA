@@ -130,7 +130,6 @@ class UserProxy : FirebaseProxy {
 
                 }
 
-
             }
 
             override fun onCancelled(error: DatabaseError) {

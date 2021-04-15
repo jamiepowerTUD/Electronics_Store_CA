@@ -176,7 +176,6 @@ class Catalogue : AppCompatActivity() {
         price_order.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0)
         man_order.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0)
 
-
         Sorter = TitleSort()
 
 

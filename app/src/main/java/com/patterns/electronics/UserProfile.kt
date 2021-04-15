@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -194,8 +195,10 @@ class UserProfile : AppCompatActivity()
             if (valid)
             {
 
-                proxy.update(id,"card","${numberField.text.toString()}-${numberField.text.toString()}-${cvvField.text.toString()}")
+                proxy.update(id,"card","${numberField.text.toString()}-${dateField.text.toString()}-${cvvField.text.toString()}")
 
+                card.text = "${numberField.text.toString()}-${dateField.text.toString()}-${cvvField.text.toString()}"
+                Toast.makeText(this,"Card Updated",Toast.LENGTH_SHORT).show()
                 dialog.dismiss()
 
 

@@ -36,10 +36,10 @@ class AddItem : AppCompatActivity() {
 
     lateinit var imageUri : Uri
 
-    val REQUEST_CODE = 7777
+    private val REQUEST_CODE = 7777
 
 
-    val categories = arrayOf("", "Computer", "Phone", "Accessory", "TV")
+    private val categories = arrayOf("", "Computer", "Phone", "Accessory", "TV")
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -159,11 +159,9 @@ class AddItem : AppCompatActivity() {
         if(valid)
         {
 
-
             proxy = ItemProxy()
 
             val item = Item(title.text.toString(),price.text.toString().toDouble(),amount.text.toString().toInt(),manufacturer.text.toString(),color.text.toString(),category.selectedItem.toString(),"gs://electronics-store-ca.appspot.com/${title.text}")
-
             proxy.add(item,imageUri)
 
             title.setText("")
@@ -173,7 +171,7 @@ class AddItem : AppCompatActivity() {
             manufacturer.setText("")
             category.setSelection(0)
             item_image.setImageResource(0)
-            Toast.makeText(this,"Item Added", Toast.LENGTH_SHORT).show()
+            runOnUiThread {Toast.makeText(this@AddItem,"Item Added", Toast.LENGTH_SHORT).show()  }
 
 
         }

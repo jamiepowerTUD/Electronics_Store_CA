@@ -63,6 +63,9 @@ class StockManagement : AppCompatActivity() {
         price_order = findViewById(R.id.manager_sort_price)
 
 
+        val titles = ArrayList<String>()
+
+
 
         recycler = findViewById(R.id.manager_recycler)
 
@@ -87,8 +90,13 @@ class StockManagement : AppCompatActivity() {
                     Log.i("Item",item.toString())
 
 
-
+                    if(!titles.contains(name))
+                    {
                         items.add((item))
+                        titles.add(name)
+                    }
+
+
 
 
                 }

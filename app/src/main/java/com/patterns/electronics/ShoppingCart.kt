@@ -65,25 +65,21 @@ class ShoppingCart : AppCompatActivity()
                        val image = snap.child("flyweight").child("imageURI").value.toString()
 
                        basket.add(CartItem(price,CartItemFactory.getCartItemFlyweight(name,id,man,image)))
-
                    }
+
+                   if(basket.isEmpty())
+                       Toast.makeText(this@ShoppingCart,"Your basket is empty",Toast.LENGTH_SHORT).show()
 
                    adapter = checkoutAdapter(basket)
                    val mLayoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this@ShoppingCart)
                    recycler.layoutManager = mLayoutManager
                    recycler.adapter = adapter
 
-
-
-               }
-
-
-            }
+               } }
 
             override fun onCancelled(error: DatabaseError) {
 
             }
-
         })
 
 
@@ -153,10 +149,7 @@ class ShoppingCart : AppCompatActivity()
                                         {
                                             valid = false
                                         }
-
                                     }
-
-
 
                                 }
 

@@ -15,7 +15,6 @@ class TitleFilter : FilterStrategy
                 {
                     temp.add(i)
                 }
-
             }
 
         return temp
